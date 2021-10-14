@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Container = styled.div`
-  border: 2px solid red;
   width: 500px;
   display: flex;
   justify-content: space-between;
@@ -22,6 +21,8 @@ const Btn = styled.button`
 
 const CounterValue = styled.h2`
   font-size: 50px;
+  color: ${({ children }) => (children >= 100 ? "green" : "")};
+  color: ${({ children }) => (children <= -100 ? "red" : "")};
 `;
 
 const InputCounter = styled.input`
@@ -51,14 +52,18 @@ const Counter = () => {
       <CounterValue data-testid="counter">{count}</CounterValue>
       <Wrapper>
         <Container>
-          <Btn onClick={subtractFromCounter}>-</Btn>
+          <Btn data-testid="subtract-btn" onClick={subtractFromCounter}>
+            -
+          </Btn>
           <InputCounter
             data-testid="input"
             type="number"
             value={inputValue}
             onChange={(e) => setInputValue(parseInt(e.target.value, 10))}
           ></InputCounter>
-          <Btn onClick={addToCounter}>+</Btn>
+          <Btn data-testid="add-btn" onClick={addToCounter}>
+            +
+          </Btn>
         </Container>
       </Wrapper>
     </>
